@@ -5,21 +5,29 @@ on:
     - cron: "0 18 * * *"
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
+      - uses: actions/checkout@v4
+
+      - uses: yoshi389111/github-profile-3d-contrib@0.7.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: StephenZaraspe
+          MAX_REPOS: 10
 
-      - uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: output
-          build_dir: profile-3d-contrib
+      - name: Push to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f profile-3d-contrib/
+          git stash
+          git fetch origin output || git checkout --orphan output
+          git checkout output 2>/dev/null || git checkout --orphan output
+          git stash pop || true
+          git add -f profile-3d-contrib/
+          git commit -m "Update 3D contrib graph"
+          git push origin output --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
