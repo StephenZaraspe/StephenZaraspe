@@ -203,7 +203,7 @@ I'm a **Full Stack Developer** with a strong focus on **Clean Architecture**, **
 
 <div align="center">
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=StephenZaraspe&theme=tokyonight&no-frame=true&row=1&column=7)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-profile-trophy.vercel.app/?username=StephenZaraspe&theme=tokyonight&no-frame=true&margin-w=4)](https://github.com/ryo-ma/github-profile-trophy)
 
 </div>
 
